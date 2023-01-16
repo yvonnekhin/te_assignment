@@ -1,13 +1,12 @@
 package com.eiphyukhin.salarymgmt.model;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="user")
-public class User implements Serializable {
+public class User {
 
 	@Id
 	@Column(name="id", nullable = false, updatable = false)
@@ -19,13 +18,12 @@ public class User implements Serializable {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "salary", precision = 15, scale = 2)
+	@Column(name = "salary", precision = 15, scale = 3)
 	private BigDecimal salary;
 	
 
 	public User() {
 	}
-
 
 	public User(String id, String login, String name, BigDecimal salary) {
 		super();
@@ -39,11 +37,9 @@ public class User implements Serializable {
 		return id;
 	}
 
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 
 	public String getLogin() {
 		return login;
@@ -67,9 +63,7 @@ public class User implements Serializable {
 
 	public void setSalary(BigDecimal salary) {
 		this.salary = salary;
-	}
-	
-	
+	}	
 		
 	
 }
