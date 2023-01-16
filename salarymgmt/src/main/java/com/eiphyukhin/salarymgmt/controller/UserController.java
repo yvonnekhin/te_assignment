@@ -40,18 +40,14 @@ public class UserController {
 	public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
 		String message = "";
 		
-		if(CSVHelper.hasCSVFormat(file)) {
-			try {
-				userService.saveFile(file);
-				
-				message = "Uploaded the file successfully: " + file.getOriginalFilename();
-				return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
-			} catch (Exception e) {
-				message = "Could not upload the file: " + file.getOriginalFilename() + "!";
-		        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
-			}
+		try {
+			userService.saveFile(file);
+			
+			message = "Uploaded the file successfully: " + file.getOriginalFilename();
+			return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+		} catch (Exception e) {
+			message = "Unable to upload the file: " + file.getOriginalFilename() + "!";
+	        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
 		}
-		message = "Please upload a csv file!";
-	    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseMessage(message));
 	}
 }
