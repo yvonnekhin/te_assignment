@@ -26,13 +26,13 @@ public class UserController {
 	
 	@PostMapping("/users/add")
 	public ResponseEntity<User> addEmployee(@RequestBody User employee) {
-		User newEmployee = userService.addEmployee(employee);
+		User newEmployee = userService.addUser(employee);
 		return new ResponseEntity<User>(newEmployee, HttpStatus.CREATED);
 	}
 
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> getAllEmployees() {
-		List<User> employeeList = userService.findAllEmployees();
+		List<User> employeeList = userService.findAllUsers();
 		return new ResponseEntity<List<User>>(employeeList, HttpStatus.OK);
 	}
 	
