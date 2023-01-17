@@ -20,8 +20,8 @@ import com.eiphyukhin.salarymgmt.service.UserService;
 public class UserController {
 	private final UserService userService;
 	
-	public UserController(UserService employeeService) {
-		this.userService = employeeService;
+	public UserController(UserService userService) {
+		this.userService = userService;
 	}
 	
 	@PostMapping("/users/add")
