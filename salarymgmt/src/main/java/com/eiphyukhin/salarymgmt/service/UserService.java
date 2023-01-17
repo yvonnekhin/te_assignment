@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,8 +29,11 @@ public class UserService {
 		return userRepository.save(user);
 	}
 	
-	public List<User> findAllUsers() {
-		return userRepository.findAll();
+	public List<User> findAllUsers(int limit, int offset) {
+		
+		// create Pageable instance
+		Pageable pageable = PageRequest.of(limit, offset);
+		return userRepository.findAll(pageable).getContent();
 	}
 	
 	public User findUserById(String id) {

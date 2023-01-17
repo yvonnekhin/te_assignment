@@ -15,6 +15,7 @@ import com.eiphyukhin.salarymgmt.helper.CSVHelper;
 import com.eiphyukhin.salarymgmt.message.ResponseMessage;
 import com.eiphyukhin.salarymgmt.model.User;
 import com.eiphyukhin.salarymgmt.service.UserService;
+import com.eiphyukhin.salarymgmt.utils.AppConstants;
 
 @RestController
 public class UserController {
@@ -31,8 +32,9 @@ public class UserController {
 	}
 
 	@GetMapping("/users")
-	public ResponseEntity<List<User>> getAllEmployees() {
-		List<User> employeeList = userService.findAllUsers();
+	public ResponseEntity<List<User>> getAllEmployees(@RequestParam(value = "offset", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int offSet,
+            @RequestParam(value = "limit", defaultValue = AppConstants.DEFAULT_PAGE_SIZE, required = false) int limit) {
+		List<User> employeeList = userService.findAllUsers(offSet, limit);
 		return new ResponseEntity<List<User>>(employeeList, HttpStatus.OK);
 	}
 	
