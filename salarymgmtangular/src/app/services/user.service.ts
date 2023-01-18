@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../user';
 import { environment } from '../../environments/environment';
@@ -13,8 +13,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  public getEmployees(): Observable<any> {
-    return this.http.get<any>(`${this.apiServerUrl}/users`);
+  public getEmployees(params: any): Observable<any> {
+    return this.http.get<any>(`${this.apiServerUrl}/users`,{params});
   }
 
   public addEmployees(User: User): Observable<User> {

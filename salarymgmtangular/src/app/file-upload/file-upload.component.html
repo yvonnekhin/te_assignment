@@ -2,12 +2,14 @@
        (change)="onFileSelected($event)" #fileUpload>
 
 <div class="file-upload">
-    <button mat-mini-fab color="primary" class="upload-btn"
+  <button type="button" class="btn btn-success upload-btn" (click)="fileUpload.click()">Import Users from CSV</button>
+
+    <!-- <button mat-mini-fab color="primary" class="upload-btn"
       (click)="fileUpload.click()">
         <mat-icon>Upload</mat-icon>
 
-    </button>
-    {{fileName || "No file uploaded yet."}}
+    </button> -->
+    
 
 </div>
 

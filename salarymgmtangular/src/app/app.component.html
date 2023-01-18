@@ -2,46 +2,25 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
 
 <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <app-file-upload></app-file-upload>
+        </div>
+    </div>
+    <div class="row g-0 align-items-center pb-4">
+        <div class="col-sm-6">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="col-sm-6">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+        </div>
+    </div>
     <div class="row align-items-center">
         <div class="col-md-6">
             <div class="mb-3">
-                <h5 class="card-title">Employee List</h5>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
-                <div>
-                    <ul class="nav nav-pills">
-                        <li class="nav-item">
-                            <a
-                                aria-current="page"
-                                href="#"
-                                class="router-link-active router-link-exact-active nav-link active"
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="top"
-                                title=""
-                                data-bs-original-title="List"
-                                aria-label="List"
-                            >
-                                <i class="bx bx-list-ul"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Grid" aria-label="Grid"><i class="bx bx-grid-alt"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <app-file-upload></app-file-upload>
-                </div>
-                <div class="dropdown">
-                    <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bx bx-dots-horizontal-rounded"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
+                <h5 style="font-weight: bold">Employees</h5>
             </div>
         </div>
     </div>
@@ -52,9 +31,7 @@
                     <table class="table project-list-table table-nowrap align-middle table-borderless">
                         <thead>
                             <tr>
-                                <th scope="col" class="ps-4" style="width: 50px;">
-                                    <div class="form-check font-size-16"><input type="checkbox" class="form-check-input" id="contacusercheck" /><label class="form-check-label" for="contacusercheck"></label></div>
-                                </th>
+                                <th scope="col"></th>
                                 <th scope="col">Id</th>
                                 <th scope="col">Login</th>
                                 <th scope="col">Name</th>
@@ -63,14 +40,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let user of users">
-                                <th scope="row" class="ps-4">
-                                    <div class="form-check font-size-16"><input type="checkbox" class="form-check-input" id="contacusercheck1" /><label class="form-check-label" for="contacusercheck1"></label></div>
-                                </th>
-                                <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">{{user.id}}</a></td>
+                            <tr *ngFor="let user of users | paginate: {
+                                  itemsPerPage: limit,
+                                  currentPage: offset,
+                                  totalItems: count
+                                }">
+                                <td><img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="avatar-sm rounded-circle me-2" /></td>
+                                <td>{{user.id}}</td>
                                 <td>{{user.login}}</td>
                                 <td>{{user.name}}</td>
-                                <td>{{user.salary}}</td>
+                                <td>S${{user.salary}}</td>
                                 <td>
                                     <ul class="list-inline mb-0">
                                         <li class="list-inline-item">
@@ -88,28 +67,9 @@
             </div>
         </div>
     </div>
-    <div class="row g-0 align-items-center pb-4">
-        <div class="col-sm-6">
-            <div><p class="mb-sm-0">Showing 1 to 10 of 57 entries</p></div>
-        </div>
-        <div class="col-sm-6">
-            <div class="float-sm-end">
-                <ul class="pagination mb-sm-0">
-                    <li class="page-item disabled">
-                        <a href="#" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
-                    </li>
-                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">4</a></li>
-                    <li class="page-item"><a href="#" class="page-link">5</a></li>
-                    <li class="page-item">
-                        <a href="#" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <div class="row g-0 justify-content-center pb-4">
+        <nav class="d-flex justify-content-center">
+            <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
+        </nav>
     </div>
 </div>
-
-

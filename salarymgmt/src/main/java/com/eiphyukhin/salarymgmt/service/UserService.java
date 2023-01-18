@@ -5,11 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.eiphyukhin.salarymgmt.exception.EmptyFileUploadException;
 import com.eiphyukhin.salarymgmt.helper.CSVHelper;
 import com.eiphyukhin.salarymgmt.model.User;
@@ -29,11 +27,11 @@ public class UserService {
 		return userRepository.save(user);
 	}
 	
-	public List<User> findAllUsers(int limit, int offset) {
+	public Page<User> findAllUsers(Pageable paging) {
 		
 		// create Pageable instance
-		Pageable pageable = PageRequest.of(limit, offset);
-		return userRepository.findAll(pageable).getContent();
+//		Pageable pageable = PageRequest.of(page, size);
+		return userRepository.findAll(paging);
 	}
 	
 	public User findUserById(String id) {

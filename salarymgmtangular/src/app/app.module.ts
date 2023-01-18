@@ -1,6 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { UserService } from './services/user.service';
@@ -14,6 +15,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgxPaginationModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent],
