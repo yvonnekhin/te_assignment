@@ -19,3 +19,4 @@ go to you desired path and run this command
 	# 'Run' from IDE menu -> Run Configurations -> Maven Build -> add run configration and add 'spring-boot:run' in Goals
 # CLick Run
 
+# After each upload, please referesh the page to see the updated Employee List
