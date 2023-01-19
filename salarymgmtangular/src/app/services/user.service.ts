@@ -21,13 +21,4 @@ export class UserService {
     return this.http.post<User>(`${this.apiServerUrl}/users/add`, User);
   }
 
-  // uploadFile(file: File): Observable<HttpEvent<{}>> {
-  //     const data: FormData = new FormData();
-  //     data.append('file', file);
-  //     const newRequest = new HttpRequest('POST', `${this.apiServerUrl}/users/upload`, data, {
-  //     reportProgress: true,
-  //     responseType: 'text'
-  //     });
-  //     return this.http.request(newRequest);
-  // }
 }

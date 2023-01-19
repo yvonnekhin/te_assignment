@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { FileUploadService } from '../services/file-upload.service';
 
 @Component({
@@ -18,8 +15,6 @@ export class FileUploadComponent {
 
   text = '';
 
-  fileInfos?: Observable<any>;
-
   constructor(private fileUploadService: FileUploadService) {}
 
   onFileSelected(event: Event) {
@@ -33,6 +28,7 @@ export class FileUploadComponent {
       }
     }
   }
+
 }
 
     

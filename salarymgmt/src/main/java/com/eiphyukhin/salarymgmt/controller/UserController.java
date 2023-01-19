@@ -55,8 +55,6 @@ public class UserController {
 		    response.put("totalItems", pageUsers.getTotalElements());
 		    response.put("totalPages", pageUsers.getTotalPages());
 		    
-		    
-			
 			return new ResponseEntity<>(response, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

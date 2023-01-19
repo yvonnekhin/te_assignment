@@ -1,6 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
 import { User } from './user';
 import { UserService } from './services/user.service';
 
@@ -56,5 +54,6 @@ export class AppComponent implements OnInit {
     }
     );
   }
+
 }
 
